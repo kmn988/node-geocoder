@@ -89,35 +89,33 @@
           .once()
           .callsArgWith(2, false, [
             {
-              place_id: '80515867',
+              place_id: '371408123',
               licence:
                 'Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright',
               osm_type: 'way',
-              osm_id: '90394480',
+              osm_id: '704153616',
               boundingbox: [
-                '52.5487473',
-                '52.5488481',
-                '-1.8165129',
-                '-1.8163463'
+                '21.0264368',
+                '21.0268920',
+                '105.8551375',
+                '105.8554352'
               ],
-              lat: '52.5487921',
-              lon: '-1.8164307339635',
+              lat: '21.02666585',
+              lon: '105.8552602508254',
               display_name:
-                '135, Pilkington Avenue, Castle Vale, Maney, Birmingham, West Midlands, England, B72 1LH, United Kingdom',
-              class: 'place',
-              type: 'house',
-              importance: 0.411,
+                'Tonkin Palace, 12, Ngo Quyen Street, Phường Tràng Tiền, Hoan Kiem District, Hà Nội, 11022, Vietnam',
+              type: 'attraction',
+              importance: 0.39240155039647573,
               address: {
-                house_number: '135',
-                road: 'Pilkington Avenue',
-                suburb: 'Castle Vale',
-                hamlet: 'Maney',
-                city: 'Birmingham',
-                state_district: 'West Midlands',
-                state: 'England',
-                postcode: 'B72 1LH',
-                country: 'United Kingdom',
-                country_code: 'gb'
+                house_number: '12',
+                street: 'Phố Ngô Quyền',
+                district: 'Hoàn Kiếm',
+                city: 'Hà Nội',
+                subdistrict: 'Tràng Tiền',
+                province: 'Hà Nội',
+                postcode: '11022',
+                country: 'Vietnam',
+                country_code: 'vn'
               }
             }
           ]);
@@ -126,31 +124,29 @@
           apiKey: 'API_KEY'
         });
 
-        nmAdapter.geocode(
-          '135 pilkington avenue, birmingham',
-          function (err, results) {
-            mock.verify();
+        nmAdapter.geocode('12 Ngô Quyền, Hà Nội', function (err, results) {
+          mock.verify();
 
-            err.should.to.equal(false);
+          err.should.to.equal(false);
 
-            results[0].should.to.deep.equal({
-              latitude: 52.5487921,
-              longitude: -1.8164307339635,
-              formattedAddress:
-                '135, Pilkington Avenue, Castle Vale, Maney, Birmingham, West Midlands, England, B72 1LH, United Kingdom',
-              country: 'United Kingdom',
-              state: 'England',
-              city: 'Birmingham',
-              zipcode: 'B72 1LH',
-              streetName: 'Pilkington Avenue',
-              streetNumber: '135',
-              countryCode: 'GB',
-              neighbourhood: ''
-            });
+          results[0].should.to.deep.equal({
+            latitude: 21.02666585,
+            longitude: 105.8552602508254,
+            formattedAddress:
+              'Tonkin Palace, 12, Ngo Quyen Street, Phường Tràng Tiền, Hoan Kiem District, Hà Nội, 11022, Vietnam',
+            country: 'Vietnam',
+            province: 'Hà Nội',
+            city: 'Hà Nội',
+            zipcode: '11022',
+            streetName: 'Phố Ngô Quyền',
+            district: 'Hoàn Kiếm',
+            subdistrict: 'Tràng Tiền',
+            streetNumber: '12',
+            countryCode: 'VN'
+          });
 
-            done();
-          }
-        );
+          done();
+        });
       });
     });
 
@@ -164,52 +160,52 @@
             key: 'API_KEY',
             addressdetails: 1,
             format: 'json',
-            lat: 40.714232,
-            lon: -73.9612889
+            lat: 21.0609975,
+            lon: 105.7779905120694
           })
           .callsArgWith(2, false, {
-            place_id: '149160357',
+            place_id: '207725411',
             licence:
               'Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright',
             osm_type: 'way',
-            osm_id: '279767984',
-            lat: '40.714205',
-            lon: '-73.9613150927476',
+            osm_id: '1115559634',
+            lat: '21.0609975',
+            lon: '105.7779905120694',
             display_name:
-              '279, Bedford Avenue, Williamsburg, Kings County, NYC, New York, 11211, United States of America',
+              'Sân bóng cổ nhuê, Ngõ 145 Cổ Nhuế, Co Nhue 2 Ward, North Tu Liem District, Hà Nội, 12500, Vietnam',
             address: {
-              house_number: '279',
-              road: 'Bedford Avenue',
-              neighbourhood: 'Williamsburg',
-              county: 'Kings County',
-              city: 'NYC',
-              state: 'New York',
-              postcode: '11211',
-              country: 'United States of America',
-              country_code: 'us'
+              house_number: '145',
+              street: 'Cổ Nhuế',
+              district: 'Bắc Từ Liêm',
+              subdistrict: 'Cổ Nhuế',
+              city: 'Hà Nội',
+              postcode: '12500',
+              country: 'Vietnam',
+              country_code: 'vn'
             }
           });
         var nmAdapter = new NominatimMapquestGeocoder(mockedHttpAdapter, {
           apiKey: 'API_KEY'
         });
         nmAdapter.reverse(
-          { lat: 40.714232, lon: -73.9612889 },
+          { lat: 21.0609975, lon: 105.7779905120694 },
           function (err, results) {
             mock.verify();
             err.should.to.equal(false);
             results[0].should.to.deep.equal({
-              latitude: 40.714205,
-              longitude: -73.9613150927476,
+              latitude: 21.0609975,
+              longitude: 105.7779905120694,
               formattedAddress:
-                '279, Bedford Avenue, Williamsburg, Kings County, NYC, New York, 11211, United States of America',
-              country: 'United States of America',
-              city: 'NYC',
-              state: 'New York',
-              zipcode: '11211',
-              streetName: 'Bedford Avenue',
-              streetNumber: '279',
-              countryCode: 'US',
-              neighbourhood: 'Williamsburg'
+                'Sân bóng cổ nhuê, Ngõ 145 Cổ Nhuế, Co Nhue 2 Ward, North Tu Liem District, Hà Nội, 12500, Vietnam',
+              country: 'Vietnam',
+              city: 'Hà Nội',
+              province: '',
+              district: 'Bắc Từ Liêm',
+              subdistrict: 'Cổ Nhuế',
+              zipcode: '12500',
+              streetName: 'Cổ Nhuế',
+              streetNumber: '145',
+              countryCode: 'VN'
             });
             done();
           }
